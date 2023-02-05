@@ -5,10 +5,10 @@ CMS uses django 4.1.5
 
 Open your favorite Terminal and run these commands.
 
-To install django:
+To install requirements:
 
 ```sh
-pip install django
+pip install -r requirements.txt
 ```
 
 To run project:

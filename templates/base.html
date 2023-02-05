@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="icon" href="{% static '/ico/CMS.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static '/ico/cms-logo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css'%}">
     <script src="{% static '/js/bootstrap.bundle.min.js'%}"></script>
 </head>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
+          <a class="navbar-brand" href="/"><img src="{% static '/ico/cms-logo.png' %}" alt="" title="CMS" width="50" height="50"></a>
           <a class="navbar-brand" href="/">CMS</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,14 +23,15 @@
               <li class="nav-item">
                 <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="/">Home</a>
               </li>
+    
               <li class="nav-item">
-                <a class="nav-link" href="#">Roadmaps</a>
+                <a class="nav-link {% block certificateactive %}{% endblock certificateactive %}" href="/certificate">Certificates</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Certificates</a>
+                <a class="nav-link {% block progressactive %}{% endblock progressactive %}" href="/progress">My progress graph</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">My progress graph</a>
+                <a class="nav-link {% block courseactive %}{% endblock courseactive %}" href="/course">My Courses</a>
               </li>
             </ul>
             <ul class="navbar-nav me-right mb-2 mb-lg-0">
