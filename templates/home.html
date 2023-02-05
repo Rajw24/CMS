@@ -1,86 +1,75 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock title %} {% block
-homeactive %}active{% endblock homeactive %} {% block body %}
+{% extends 'base.html' %} 
+{% block title %}Home{% endblock title %} 
+{% block homeactive %}active{% endblock homeactive %} 
+{% block body %}
+<style>
+  .gtr{
+    width: -moz-available;
+  }
+</style>
 <div>
   <h1 class="display-1 text-center text-light" style="letter-spacing: 0.08em">
     Developer roadmaps
   </h1>
 </div>
-<div class="container py-3" style="width: 50%">
-  {% comment %}
-  <h2 class="text-center text-secondary">Role based roadmaps</h2>
-  {% endcomment %}
-  <div class="row row-cols-1 row-cols-lg-3 g-2 g-lg-3 text-white">
+<div class="container py-5 mx-auto">
+  <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-5 gx-5">
     <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend">
-        <div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div>
-      </a>
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Frontend Developer</div>
+        </a>
     </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Backend Developer</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">DevOps Engineer</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Android Developer</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Database Administrator</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Blockchain Developer</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Quality Analyst</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Software Architect</div>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a class="text-decoration-none text-reset" href="/frontend">
+            <div class="col p-3 btn btn-outline-light gtr">Cyber Security</div>
+        </a>
+    </div>
+    
+        
+</div>
 
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend">
-        <div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div>
-      </a>
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend">
-        <div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div>
-      </a>
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend">
-        <div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div>
-      </a>
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend">
-        <div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div>
-      </a>
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend">
-        <div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div></a
-      >
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend"
-        ><div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div></a
-      >
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend"
-        ><div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div></a
-      >
-    </div>
-
-    <div class="col">
-      <a class="text-decoration-none text-white" href="/frontend"
-        ><div class="p-3 btn btn-outline-light" style="width: 12rem">
-          Frontend Developer
-        </div></a
-      >
-    </div>
-  </div>
 </div>
 {% endblock body %}
