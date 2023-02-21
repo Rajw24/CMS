@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Welcome to CMS
+
+hello {{name}}!!
+
+please Confirm your emailby clicking following link. 
+
+Confirmation link: http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+{% endautoescape %}

@@ -1,6 +1,8 @@
 {% extends 'base.html' %} 
 {% block title %}Home{% endblock title %} 
 {% block homeactive %}active{% endblock homeactive %} 
+{% block bodybg %}bg-dark{% endblock bodybg %}
+
 {% block body %}
 <style>
   .gtr{
@@ -9,10 +11,10 @@
   }
 </style>
 {% for message in messages %}
-<div class="alert alert-{{ messages.tags }} alert-dismissible fade show text-light" role="alert">
-    <p>{{ message }}</p>
-    <button type="button" class="btn-close btn-light" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert {% if message.tags == "error" %} alert-danger {% endif %} {% if message.tags == "success" %} alert-success {% endif %} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close {% if message.tags == "error" %} btn-danger {% endif %} {% if message.tags == "success" %} btn-success {% endif %}" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {% endfor %}
 
 <div>
