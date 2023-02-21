@@ -8,6 +8,13 @@
     width: -moz-available;
   }
 </style>
+{% for message in messages %}
+<div class="alert alert-{{ messages.tags }} alert-dismissible fade show text-light" role="alert">
+    <p>{{ message }}</p>
+    <button type="button" class="btn-close btn-light" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
 <div>
   <h1 class="display-1 text-center text-light" style="letter-spacing: 0.08em">
     Developer roadmaps
