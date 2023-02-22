@@ -39,9 +39,16 @@ Rename ```.env.example``` as ```.env``` and paste your secret key
 
 Rename ```exampleinfo.py``` as ```info.py``` ans paste your email details
 
-To run project:
+## To run project:
+
 Open terminal at the location where project is downloaded and ```manage.py``` file is present
-run the following command:
+run the following commands:
+```sh
+python manage.py makemigrations
+```
+```sh
+python manage.py migrate
+```
 ```sh
 python manage.py runserver
 ```
