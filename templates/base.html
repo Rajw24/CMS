@@ -10,9 +10,10 @@
     </title>
     <link rel="icon" href="{% static '/ico/cms-logo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static '/css/global.css'%}">
     <script src="{% static '/js/bootstrap.bundle.min.js'%}"></script>
 </head>
-<body class="{% block bodybg %}{% endblock bodybg %} ">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/"><img src="{% static '/ico/cms-logo.png' %}" alt="" title="CMS" width="50" height="50"></a>
@@ -130,6 +131,72 @@
           </div>
         </div>
       </nav>
+      {% for message in messages %}
+        <div class="alert {% if message.tags == "error" %} alert-danger {% endif %} {% if message.tags == "success" %} alert-success {% endif %} alert-dismissible fade show mb-0" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close {% if message.tags == "error" %} btn-danger {% endif %} {% if message.tags == "success" %} btn-success {% endif %}" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
     {% block body %}{% endblock body %}
+<div class="container-fluid px-0 mt-5">
+<footer class="text-center text-lg-start text-white bg-dark">
+  <div class="container p-4 pb-0">
+    <section class="">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">
+            CMS
+          </h6>
+          <p>
+            Here you can use rows and columns to organize your footer
+            content. Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit.
+          </p>
+        </div>
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+          <p> IIT Kaman UCOE, Palghar 401 118, INDIA</p>
+          <p> ucoe@universal.edu.in</p>
+          <p>+91 234 567 88</p>
+          <p>+91 234 567 89</p>
+        </div>
+        <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Write to us</h6>
+          <form action="/contact/" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="3" name="message" placeholder="Your message here!" required></textarea>
+            </div>  
+            <button type="submit" class="btn btn-outline-light">
+              Send
+            </button>
+          </form>
+
+        </div>
+        <hr class="w-100 clearfix d-md-none" />
+      </div>
+    </section>
+    <hr class="my-3">
+
+    <section class="p-3 pt-0">
+      <div class="row d-flex align-items-center">
+        <div class="col-md-7 col-lg-8 text-center text-md-start">
+          <div class="p-3">
+            © 2020 Copyright: CMS
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</footer>
+</div>
 </body>
 </html>

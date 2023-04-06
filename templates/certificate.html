@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Certificate{% endblock title %}
 {% block certificateactive %}active{% endblock certificateactive %}
-{% block bodybg %}bg-dark{% endblock bodybg %}
 
 {% block body %}
-<h2 class="text-light display-1">
-Certificates
-</h2>
+<div class="container pt-3">
+    <form>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+          <label for="file1" class="form-label">File</label>
+          <input type="file" class="form-control" id="file1" name="file">
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </form>
+</div>
 {% endblock body %}

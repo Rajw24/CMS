@@ -9,11 +9,15 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from home.tokens import generate_token
 from CMS import info
+from home.models import Enquiries
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
 def certificate(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        print(title)
     return render(request, 'certificate.html')
 def progress(request):
     return render(request, 'progress.html')
@@ -21,6 +25,22 @@ def course(request):
     return render(request, 'course.html')
 def frontend(request):
     return render(request, 'roadmap/frontend.html')
+def backend(request):
+    return render(request, 'roadmap/backend.html')
+def android(request):
+    return render(request, 'roadmap/android.html')
+def blockchain(request):
+    return render(request, 'roadmap/blockchain.html')
+def database(request):
+    return render(request, 'roadmap/database.html')
+def devops(request):
+    return render(request, 'roadmap/devops.html')
+def quality(request):
+    return render(request, 'roadmap/quality.html')
+def software(request):
+    return render(request, 'roadmap/software.html')
+def fullstack(request):
+    return render(request, 'roadmap/fullstack.html')
 def signin(request):
     if request.method == "POST":
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
@@ -112,6 +132,21 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return redirect('home') 
+        return redirect('home')
     else:
         return render(request, 'Activation_failed.html')
+    
+def contact(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        ins = Enquiries(email=email, message=message)
+        ins.save()
+
+        subject = "New Message recieved on CMS"
+        message = f"Hello You have a New message on CMS from email {email} and message is as follows: \n{message}" 
+        from_email = info.EMAIL_HOST_USER
+        to_email = ["rwalavalkar724@gmail.com", "siddheshsankpal2003@gmail.com","nitesh.yadavvv07@gmail.com","sahilsaykar2407@gmail.com","shreyashwadkar1991@gmail.com"]
+        send_mail(subject, message, from_email, to_email, fail_silently=False)
+        messages.success(request, "Message recorded successfully")
+    return redirect('home')
