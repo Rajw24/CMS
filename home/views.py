@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
@@ -9,18 +10,30 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from home.tokens import generate_token
 from CMS import info
-from home.models import Enquiries
+from home.models import Enquiries, Certificates
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+@login_required
 def certificate(request):
     if request.method == "POST":
-        title = request.POST['title']
-        print(title)
+        try:
+            title = request.POST['title']
+            file  = request.FILES['file']
+            user = request.user.pk
+            print(user)
+            ins = Certificates(user=user, title=title, file=file)
+            ins.save()
+            messages.success(request, "Certificate uploaded successfully.")
+        except Exception as e:
+            print(f'Exception occurred{e}')
+            messages.error(request, "Something went wrong.")
     return render(request, 'certificate.html')
+@login_required
 def progress(request):
     return render(request, 'progress.html')
+@login_required
 def course(request):
     return render(request, 'course.html')
 def frontend(request):
@@ -51,7 +64,7 @@ def signin(request):
         else:
             messages.error(request, "Bad credentials")
             return redirect("home")
-    return render(request, "home.html")
+    return redirect("home")
     
 def signup(request):
     if request.method == "POST":
@@ -63,7 +76,7 @@ def signup(request):
         if User.objects.filter(username=username):
             messages.error(request, "Username Already Exists.")
             return redirect('home')
-        
+
         if User.objects.filter(email=email):
             messages.error(request, "Email is Already resistered.")
             return redirect('home')
@@ -114,8 +127,9 @@ def signup(request):
 
         messages.success(request, "You have successfully signed up. please check your E-mail to login!")
         return redirect('home')
-    return render(request, 'home.html')
+    return redirect("home")
 
+@login_required
 def signout(request):
     logout(request)
     messages.success(request, "Loged out Successfully.")

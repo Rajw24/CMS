@@ -4,14 +4,15 @@
 
 {% block body %}
 <div class="container pt-3">
-    <form>
+    <form method="POST" action="/certificate/" enctype="multipart/form-data">
+      {% csrf_token %}
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" name="title" required>
+          <input type="text" class="form-control" id="title" name="title" required>
         </div>
         <div class="mb-3">
-          <label for="file1" class="form-label">File</label>
-          <input type="file" class="form-control" id="file1" name="file">
+          <label for="file" class="form-label">File</label>
+          <input type="file" class="form-control" id="file" name="file" required>
         </div>
         <button type="submit" class="btn btn-outline-dark">Submit</button>
     </form>
