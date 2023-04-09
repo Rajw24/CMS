@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 import os
 
+from django.http import HttpResponseRedirect
+
 # Create your models here.
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -21,4 +23,14 @@ class Certificates(models.Model):
     file = models.FileField(upload_to=user_directory_path)
 
     def __str__(self):
-        return self.title
+        return self.title + " " + str(self.user)
+    
+    def delete(self, *args, **kwargs):
+        try:
+            self.file.delete()
+            return super(Certificates, self).delete(*args, **kwargs)
+        except models.ProtectedError as e:
+            self.object = self.get_object()
+            self.object.archived=True
+            self.object.save()
+            return HttpResponseRedirect(self.get_success_url)

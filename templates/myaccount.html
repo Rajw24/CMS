@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}My account{% endblock title %}
+{% block myaccountactive %}active{% endblock myaccountactive %}
+{% block body %}
+<div class="container pt-5" style="width: 40%">
+    <div class="row">
+        <div class="card mb-4 box-shadow p-2">
+            <div class="card-body">
+                <div class="row py-3">
+                    <h2 class="text-center text-dark text-shadow">My Profile</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{user.email}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Username</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{user.username}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Date joined</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{user.date_joined}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Last login</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{user.last_login}}</p>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+</div>
+{% endblock body %}

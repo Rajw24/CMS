@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.http import Http404
+from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -11,10 +12,27 @@ from django.utils.encoding import force_bytes, force_str
 from home.tokens import generate_token
 from CMS import info
 from home.models import Enquiries, Certificates
+from os.path import join, exists
+from django.conf import settings
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+
+@login_required
+def download(request, document_id):
+    document = get_object_or_404(Certificates, pk=document_id)
+    response = HttpResponse(document.file, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="download.pdf"'
+    return response
+
+@login_required
+def delete_certificate(request, id):
+    certificate = Certificates.objects.get(pk=id)
+    certificate.delete()
+    messages.success(request, "Certificate deleted successfully.")
+    return redirect('certificate')
 @login_required
 def certificate(request):
     if request.method == "POST":
@@ -29,13 +47,15 @@ def certificate(request):
         except Exception as e:
             print(f'Exception occurred{e}')
             messages.error(request, "Something went wrong.")
-    return render(request, 'certificate.html')
+    certificates = Certificates.objects.filter(user=request.user.pk)
+    print(certificates)
+    return render(request, 'certificate.html', {'certificates' : certificates})
 @login_required
-def progress(request):
-    return render(request, 'progress.html')
+def assessment(request):
+    return render(request, 'assessment.html')
 @login_required
-def course(request):
-    return render(request, 'course.html')
+def myaccount(request):
+    return render(request, 'myaccount.html')
 def frontend(request):
     return render(request, 'roadmap/frontend.html')
 def backend(request):

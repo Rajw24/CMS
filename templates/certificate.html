@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_template_maths %}
 {% block title %}Certificate{% endblock title %}
 {% block certificateactive %}active{% endblock certificateactive %}
 
@@ -17,4 +18,30 @@
         <button type="submit" class="btn btn-outline-dark">Submit</button>
     </form>
 </div>
+{% if certificates.exists %}
+<div class="container py-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Filename</th>
+        <th scope="col">Size</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for cert in certificates %}
+      <tr>
+        <th scope="row">{{ cert.title }}</th>
+        <td>{{ cert.file.name }}</td>
+        <td>{{ cert.file.size|div:"1000"|remove_decimal|separator:'comma' }} KB</td>
+        <td><a class="btn btn-success btn-sm me-2" href="/download/{{cert.id}}" download="{{cert.file.name}}" title="Download"><i class="fa-solid fa-download"></i></a>
+        <a class="btn btn-danger btn-sm ms-2" href="/certificate/delete/{{cert.id}}" title="delete"><i class="fa-solid fa-trash"></i></a></td>
+        {% comment %}  download="{{cert.file.url}}" {% endcomment %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
 {% endblock body %}

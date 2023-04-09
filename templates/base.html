@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static '/css/global.css'%}">
     <script src="{% static '/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static '/js/791c172a32.js'%}"></script>
+    <script src="{% static '/js/global.js'%}"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,10 +34,10 @@
                 <a class="nav-link {% block certificateactive %}{% endblock certificateactive %}" href="/certificate">Certificates</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% block progressactive %}{% endblock progressactive %}" href="/progress">My progress graph</a>
+                <a class="nav-link {% block assessmentactive %}{% endblock assessmentactive %}" href="/assessment">Get Assessed</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% block courseactive %}{% endblock courseactive %}" href="/course">My Courses</a>
+                <a class="nav-link {% block myaccountactive %}{% endblock myaccountactive %}" href="/myaccount">My account</a>
               </li>
               {% endif %}
             </ul>
@@ -69,11 +71,12 @@
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                            <i class="bi bi-eye-slash" id="togglePassword"></i>
                           </div>
-                          <div class="mb-3 form-check">
+                          {% comment %} <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input check-dark" id="exampleCheck1" name="remember">
                             <label class="form-check-label" for="exampleCheck1">remember me</label>
-                          </div>
+                          </div> {% endcomment %}
                           <button type="submit" class="btn btn-outline-dark">Sign in</button>
                         </form>
                       </div>
@@ -139,7 +142,7 @@
       {% endfor %}
     {% block body %}{% endblock body %}
 <div class="container-fluid px-0 mt-5">
-<footer class="text-center text-lg-start text-white bg-dark">
+<footer class="text-center text-lg-start text-white bg-dark footer">
   <div class="container p-4 pb-0">
     <section class="">
       <div class="row">
@@ -148,9 +151,7 @@
             CMS
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer
-            content. Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit.
+            A course management system is a platform of educational software in postsecondary education allowing instructors and institutions to manage a variety of courses with a large number of students and multiple instructional materials.
           </p>
         </div>
 
@@ -158,10 +159,10 @@
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-          <p> IIT Kaman UCOE, Palghar 401 118, INDIA</p>
-          <p> ucoe@universal.edu.in</p>
-          <p>+91 234 567 88</p>
-          <p>+91 234 567 89</p>
+          <p>UCOE, Palghar 401 118, INDIA</p>
+          <p><a href="mailto:cms.cmscare@gmail.com" class="text-reset">cms.cmscare@gmail.com</a></p>
+          <p><a href="tel:+919167923960" class="text-reset">+91 91679 23960</a></p>
+          <p><a href="tel:+918263064929" class="text-reset">+91 82630 64929</a></p>
         </div>
         <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold">Write to us</h6>

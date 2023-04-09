@@ -3,8 +3,10 @@ from home import views
 urlpatterns = [
     path('', views.home, name="home"),
     path('certificate/', views.certificate, name="certificate"),
-    path('progress/', views.progress, name="progress"),
-    path('course/', views.course, name="course"),
+    path('download/<int:document_id>', views.download, name="download"),
+    path('certificate/delete/<int:id>', views.delete_certificate, name="delete_certificate"),
+    path('assessment/', views.assessment, name="assessment"),
+    path('myaccount/', views.myaccount, name="myaccount"),
     path('frontend/', views.frontend, name="frontend"),
     path('backend/', views.backend, name="backend"),
     path('android/', views.android, name="android"),
