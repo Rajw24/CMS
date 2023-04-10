@@ -180,7 +180,7 @@ def contact(request):
         subject = "New Message recieved on CMS"
         message = f"Hello You have a New message on CMS from email {email} and message is as follows: \n{message}" 
         from_email = info.EMAIL_HOST_USER
-        to_email = ["rwalavalkar724@gmail.com", "siddheshsankpal2003@gmail.com","nitesh.yadavvv07@gmail.com","sahilsaykar2407@gmail.com","shreyashwadkar1991@gmail.com"]
+        to_email = ["rwalavalkar724@gmail.com", "nitesh.yadavvv07@gmail.com","sahilsaykar2407@gmail.com","shreyashwadkar1991@gmail.com"]
         send_mail(subject, message, from_email, to_email, fail_silently=False)
         messages.success(request, "Message recorded successfully")
     return redirect('home')
