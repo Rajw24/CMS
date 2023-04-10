@@ -41,6 +41,7 @@ def certificate(request):
             ins = Certificates(user=user, title=title, file=file)
             ins.save()
             messages.success(request, "Certificate uploaded successfully.")
+            return redirect('certificate')
         except Exception as e:
             print(f'Exception occurred{e}')
             messages.error(request, "Something went wrong.")
