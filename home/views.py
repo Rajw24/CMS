@@ -1,4 +1,3 @@
-from django.http import Http404
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -12,8 +11,6 @@ from django.utils.encoding import force_bytes, force_str
 from home.tokens import generate_token
 from CMS import info
 from home.models import Enquiries, Certificates
-from os.path import join, exists
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -181,6 +178,6 @@ def contact(request):
         message = f"Hello You have a New message on CMS from email {email} and message is as follows: \n{message}" 
         from_email = info.EMAIL_HOST_USER
         to_email = ["rwalavalkar724@gmail.com", "nitesh.yadavvv07@gmail.com","sahilsaykar2407@gmail.com","shreyashwadkar1991@gmail.com"]
-        send_mail(subject, message, from_email, to_email, fail_silently=False)
+        send_mail(subject, message, from_email, to_email, fail_silently=True)
         messages.success(request, "Message recorded successfully")
     return redirect('home')
